@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>digital clock</title>
+    <link rel="icon"  href="logo.png" type="imaga/x-icon">
+    <style>
+        
+       body{
+        margin: 0;
+        background-image: url(eagle.png);
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-position: center;
+        background-size: cover;
+        
+       }
+       .clock-container{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height:100vh ;
+        
+       }
+       #clock{
+        font-family: monospace;
+        font-size: 6rem;
+        font-weight: bold;
+        text-align: center;
+        color: rgb(22, 235, 15);  
+        background-color: hsla(0%, 0%, 100%, 0.1);     
+       
+        width: 100%;
+
+    }
+
+
+    </style>
+</head>
+<body>
+    <div class="clock-container">
+        <div id="clock">00:00:00</div>
+    </div>
+</body>
+<script>
+    function updateclock(){
+        var timeString;
+        const now = new Date();
+        const hours = now.getHours();
+
+        const minutes = now.getMinutes().toString().padStart(2, 0);
+        const seconds = now.getSeconds().toString().padStart(2, 0);
+        if(hours>12){
+           hr = hours % 12
+           hr.toString().padStart(2, 0);
+           timeString = `${hr}:${minutes}:${seconds} PM`;
+           document.getElementById("clock").textContent=timeString;
+        }
+        else{
+           timeString = `${hours}:${minutes}:${seconds} AM`;
+           document.getElementById("clock").textContent=timeString;
+        }
+        
+    }
+    updateclock();
+    setInterval(updateclock, 1000);
+    
+</script>
+</html>
